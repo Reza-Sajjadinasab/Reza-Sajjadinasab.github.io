@@ -125,12 +125,12 @@ nav .brand{white-space:nowrap}
 
   <h3 class="sub">Under review</h3>
   <div class="pub fig">
-    <div class="figwrap"><img class="tall" src="img/greg.png" alt="Greg results: RL fine-tuning raises Bench2Drive driving score for three imitation-learned policies, and Greg leads on HUGSIM zero-shot transfer and adversarial Agility routes" loading="lazy"></div>
+    <div class="figwrap"><img src="img/greg.png" alt="Greg method overview: a frozen backbone feeds reward and cost critics, a belief dynamics model and an actor; uncertainty prioritizes the replay buffer, imagined returns expand value targets, and a KL regularizer keeps the actor near the demonstration policy" loading="lazy"></div>
     <div class="body">
     <div class="t">Greg: A Guided Recipe for Efficient Reinforcement Fine-Tuning in Sensorimotor Driving</div>
     <div class="a"><b>R. Sajjadinasab</b>, E. Ohn-Bar</div>
     <div class="v"><span class="tag rev">Under review</span>2026</div>
-    <div class="sum">Reinforcement fine-tuning improves every imitation-learned driving policy we tried, and the best one transfers to an unseen simulator and handles adversarial routes without collisions.</div>
+    <div class="sum">Greg starts from a driving policy learned from demonstrations and keeps improving it with reinforcement learning: critic uncertainty decides what to learn from, a learned world model imagines future returns, and a KL regularizer keeps the policy close to what it already knew. It raises the Bench2Drive driving score from 84.28 to 92.03.</div>
     </div>
   </div>
   <div class="pub fig">
