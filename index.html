@@ -43,8 +43,7 @@ h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--acce
 .card h3{margin:0 0 8px;font-size:17px}
 .card p{margin:0;color:var(--muted);font-size:15px}
 .card .who{margin-top:12px;font-size:13px;color:var(--muted)}
-.pub{padding:14px 0;border-bottom:1px solid var(--line)}
-.pub:last-child{border-bottom:none}
+.pub{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px 16px;margin:0 0 14px}
 .pub .t{font-weight:600}
 .pub .a{color:var(--muted);font-size:14px}
 .pub .a b{color:var(--ink);font-weight:600}
@@ -63,16 +62,30 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 .hero{display:flex;gap:32px;align-items:center}
 .hero .txt{flex:1;min-width:0}
 .avatar{width:148px;height:148px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line);flex:none}
-.pub.fig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0;margin:0 0 18px;overflow:hidden}
-.pub.fig .figwrap{background:#fff;border-bottom:1px solid var(--line);padding:16px}
-.pub.fig img{display:block;width:100%;height:auto;margin:0 auto}
-.pub.fig img.tall{max-width:560px}
-.pub.fig img.mid{max-width:520px}
-.pub.fig img.small{max-width:380px}
-nav .brand{white-space:nowrap}
-.pub .sum code{font-size:13px}
-.pub.fig .body{padding:14px 18px 16px}
+/* publication cards with a figure: thumbnail column + text */
+.pub.fig{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);gap:18px;align-items:start;padding:14px}
+.pub.fig .body{min-width:0;padding:2px 4px 0 0}
+.thumb{display:block;width:100%;aspect-ratio:3/2;margin:0;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:zoom-in;position:relative;font:inherit;color:inherit;transition:border-color .15s,box-shadow .15s}
+.thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.thumb:hover,.thumb:focus-visible{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.thumb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.thumb::after{content:"";position:absolute;right:8px;bottom:8px;width:26px;height:26px;border-radius:6px;background:rgba(31,61,92,.78) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3M11 8v6M8 11h6'/%3E%3C/svg%3E") center/16px no-repeat;opacity:0;transition:opacity .15s;pointer-events:none}
+.thumb:hover::after,.thumb:focus-visible::after{opacity:1}
 .pub .sum{font-size:14px;color:var(--muted);margin-top:6px}
+.pub .sum code{font-size:13px}
+@media (max-width:719px){
+  .pub.fig{grid-template-columns:1fr;gap:12px}
+  .thumb{aspect-ratio:auto;height:220px}
+  .thumb::after{opacity:1}
+}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:rgba(10,12,15,.94);cursor:zoom-out}
+.lb[hidden]{display:none}
+.lb img{max-width:min(100%,1200px);max-height:calc(100vh - 120px);background:#fff;border-radius:8px;padding:12px;cursor:default;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.lb .cap{color:#e8e8e6;font-size:14px;max-width:760px;text-align:center;margin:14px 0 0;cursor:default}
+.lb .close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font:400 26px/1 Inter,system-ui,sans-serif;cursor:pointer}
+.lb .close:hover,.lb .close:focus-visible{background:rgba(255,255,255,.25);outline:2px solid #fff;outline-offset:2px}
+nav .brand{white-space:nowrap}
 @media (max-width:600px){.hero{flex-direction:column-reverse;align-items:flex-start;gap:20px}.avatar{width:112px;height:112px}}
 </style>
 </head>
@@ -125,7 +138,7 @@ nav .brand{white-space:nowrap}
 
   <h3 class="sub">Under review</h3>
   <div class="pub fig">
-    <div class="figwrap"><img src="img/greg.png" alt="Greg method overview: a frozen backbone feeds reward and cost critics, a belief dynamics model and an actor; uncertainty prioritizes the replay buffer, imagined returns expand value targets, and a KL regularizer keeps the actor near the demonstration policy" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/greg.png" alt="Greg method overview: a frozen backbone feeds reward and cost critics, a belief dynamics model and an actor; uncertainty prioritizes the replay buffer, imagined returns expand value targets, and a KL regularizer keeps the actor near the demonstration policy" loading="lazy"></button>
     <div class="body">
     <div class="t">Greg: A Guided Recipe for Efficient Reinforcement Fine-Tuning in Sensorimotor Driving</div>
     <div class="a"><b>R. Sajjadinasab</b>, E. Ohn-Bar</div>
@@ -134,7 +147,7 @@ nav .brand{white-space:nowrap}
     </div>
   </div>
   <div class="pub fig">
-    <div class="figwrap"><img src="img/flagwise.png" alt="Flagwise overview: a frozen encoder embeds the program, a cost model predicts metrics for flag settings, per-flag signs give the first build and guided search fills later builds" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/flagwise.png" alt="Flagwise overview: a frozen encoder embeds the program, a cost model predicts metrics for flag settings, per-flag signs give the first build and guided search fills later builds" loading="lazy"></button>
     <div class="body">
     <div class="t">Learned Compiler Flag Selection That Beats the Default from the First Build</div>
     <div class="a"><b>R. Sajjadinasab</b>, S. Arora, M. Herbordt</div>
@@ -150,7 +163,7 @@ nav .brand{white-space:nowrap}
 
   <h3 class="sub">Published</h3>
   <div class="pub fig">
-    <div class="figwrap"><img class="small" src="img/hpec.png" alt="Two-stage method: experiments reward edges of a flag graph, then a cut-off keeps the strongest flags" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/hpec.png" alt="Two-stage method: experiments reward edges of a flag graph, then a cut-off keeps the strongest flags" loading="lazy"></button>
     <div class="body">
     <div class="t">A Graph-Based Algorithm for Optimizing GCC Compiler Flag Settings</div>
     <div class="a"><b>R. Sajjadinasab</b>, S. Arora, U. Drepper, A. Sanaullah, M. Herbordt</div>
@@ -159,7 +172,7 @@ nav .brand{white-space:nowrap}
     </div>
   </div>
   <div class="pub fig">
-    <div class="figwrap"><img src="img/smith-waterman.png" alt="Diagonal memory layout of the alignment matrix and vector assignment of matrix segments" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/smith-waterman.png" alt="Diagonal memory layout of the alignment matrix and vector assignment of matrix segments" loading="lazy"></button>
     <div class="body">
     <div class="t">Further Optimizations and Analysis of Smith-Waterman with Vector Extensions</div>
     <div class="a"><b>R. Sajjadinasab</b>, H. Rastaghi, H. Shahzad, S. Arora, U. Drepper, M. Herbordt</div>
@@ -168,7 +181,7 @@ nav .brand{white-space:nowrap}
     </div>
   </div>
   <div class="pub fig">
-    <div class="figwrap"><img class="mid" src="img/asce.png" alt="Time headways between human-driven, highly automated and connected automated vehicles" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/asce.png" alt="Time headways between human-driven, highly automated and connected automated vehicles" loading="lazy"></button>
     <div class="body">
     <div class="t">Modeling the Effect of Automated and Human-Driven Vehicles on the Performance of Intelligent Intersections</div>
     <div class="a">H. Mirzahossein, <b>R. Sajjadinasab</b>, I. Gholampour, A. Zamani</div>
@@ -177,7 +190,7 @@ nav .brand{white-space:nowrap}
     </div>
   </div>
   <div class="pub fig">
-    <div class="figwrap"><img class="mid" src="img/iet.png" alt="Hybrid model: wavelet denoising, GRUs and LSTMs on loop-detector data from three intersections" loading="lazy"></div>
+    <button class="thumb" type="button" title="Click to enlarge"><img src="img/iet.png" alt="Hybrid model: wavelet denoising, GRUs and LSTMs on loop-detector data from three intersections" loading="lazy"></button>
     <div class="body">
     <div class="t">A Hybrid Deep and Machine Learning Model for Short-Term Traffic Volume Forecasting of Adjacent Intersections</div>
     <div class="a">H. Mirzahossein, I. Gholampour, <b>R. Sajjadinasab</b>, A. Zamani</div>
@@ -204,5 +217,21 @@ nav .brand{white-space:nowrap}
 </main>
 
 <footer><div class="wrap">&copy; 2026 Reza Sajjadinasab &middot; Boston, MA</div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Enlarged figure">
+  <button class="close" type="button" aria-label="Close enlarged figure">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <p class="cap" id="lb-cap"></p>
+</div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lb-img'),cap=document.getElementById('lb-cap'),closeBtn=lb.querySelector('.close'),last=null;
+  function open(src,alt){img.src=src;img.alt=alt;cap.textContent=alt;lb.hidden=false;document.body.style.overflow='hidden';last=document.activeElement;closeBtn.focus();}
+  function close(){if(lb.hidden)return;lb.hidden=true;img.src='';document.body.style.overflow='';if(last&&last.focus)last.focus();}
+  document.querySelectorAll('.thumb').forEach(function(b){var i=b.querySelector('img');b.addEventListener('click',function(){open(i.src,i.alt);});});
+  lb.addEventListener('click',function(e){if(e.target===img||e.target===cap)return;close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 </body>
 </html>
