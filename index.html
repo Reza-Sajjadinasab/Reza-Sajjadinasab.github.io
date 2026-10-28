@@ -57,7 +57,7 @@ h3.sub:first-of-type{margin-top:0}
 .edu span:last-child{color:var(--muted);font-size:14px}
 footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 @media (max-width:600px){
-  header h1{font-size:32px} nav ul{gap:14px} nav ul li.hide{display:none}
+  header h1{font-size:32px} nav ul{gap:12px;font-size:13px} nav ul li.hide{display:none}
 }
 
 .hero{display:flex;gap:32px;align-items:center}
@@ -67,6 +67,10 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 .pub.fig .figwrap{background:#fff;border-bottom:1px solid var(--line);padding:16px}
 .pub.fig img{display:block;width:100%;height:auto;margin:0 auto}
 .pub.fig img.tall{max-width:560px}
+.pub.fig img.mid{max-width:520px}
+.pub.fig img.small{max-width:380px}
+nav .brand{white-space:nowrap}
+.pub .sum code{font-size:13px}
 .pub.fig .body{padding:14px 18px 16px}
 .pub .sum{font-size:14px;color:var(--muted);margin-top:6px}
 @media (max-width:600px){.hero{flex-direction:column-reverse;align-items:flex-start;gap:20px}.avatar{width:112px;height:112px}}
@@ -145,25 +149,41 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
   </div>
 
   <h3 class="sub">Published</h3>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img class="small" src="img/hpec.png" alt="Two-stage method: experiments reward edges of a flag graph, then a cut-off keeps the strongest flags" loading="lazy"></div>
+    <div class="body">
     <div class="t">A Graph-Based Algorithm for Optimizing GCC Compiler Flag Settings</div>
     <div class="a"><b>R. Sajjadinasab</b>, S. Arora, U. Drepper, A. Sanaullah, M. Herbordt</div>
     <div class="v"><span class="tag">IEEE HPEC</span>2024 &middot; <a href="https://par.nsf.gov/biblio/10569018">Paper</a></div>
+    <div class="sum">Treats compiler flags as a graph: experiments reward flag pairs that help, and a cut-off keeps the strongest ones, giving 8&ndash;13% smaller code than GCC&rsquo;s <code>-Oz</code>.</div>
+    </div>
   </div>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img src="img/smith-waterman.png" alt="Diagonal memory layout of the alignment matrix and vector assignment of matrix segments" loading="lazy"></div>
+    <div class="body">
     <div class="t">Further Optimizations and Analysis of Smith-Waterman with Vector Extensions</div>
     <div class="a"><b>R. Sajjadinasab</b>, H. Rastaghi, H. Shahzad, S. Arora, U. Drepper, M. Herbordt</div>
     <div class="v"><span class="tag">IEEE IPDPSW</span>2024 &middot; <a href="https://par.nsf.gov/biblio/10568997">Paper</a></div>
+    <div class="sum">Speeds up Smith&ndash;Waterman sequence alignment with vector instructions by reorganizing memory along diagonals and packing work into SIMD vectors, about 6&times; faster than a naive version.</div>
+    </div>
   </div>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img class="mid" src="img/asce.png" alt="Time headways between human-driven, highly automated and connected automated vehicles" loading="lazy"></div>
+    <div class="body">
     <div class="t">Modeling the Effect of Automated and Human-Driven Vehicles on the Performance of Intelligent Intersections</div>
     <div class="a">H. Mirzahossein, <b>R. Sajjadinasab</b>, I. Gholampour, A. Zamani</div>
     <div class="v"><span class="tag">ASCE J. Transportation Engineering, Part A</span>150(6), 2024 &middot; <a href="https://ascelibrary.com/doi/10.1061/JTEPBS.TEENG-7945">Paper</a></div>
+    <div class="sum">Models how mixes of human-driven, highly automated and connected vehicles change the capacity of intelligent intersections, using a different following gap for each pair of vehicle types.</div>
+    </div>
   </div>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img class="mid" src="img/iet.png" alt="Hybrid model: wavelet denoising, GRUs and LSTMs on loop-detector data from three intersections" loading="lazy"></div>
+    <div class="body">
     <div class="t">A Hybrid Deep and Machine Learning Model for Short-Term Traffic Volume Forecasting of Adjacent Intersections</div>
     <div class="a">H. Mirzahossein, I. Gholampour, <b>R. Sajjadinasab</b>, A. Zamani</div>
     <div class="v"><span class="tag">IET Intelligent Transport Systems</span>16(11), 2022 &middot; <a href="https://doaj.org/article/42d374bccac74a78921fa3b771c150d2">Paper</a></div>
+    <div class="sum">Forecasts short-term traffic at three neighboring intersections from loop-detector data, combining wavelet denoising, GRUs and LSTMs, with over 94% accuracy.</div>
+    </div>
   </div>
   <p style="font-size:14px;color:var(--muted);margin-top:16px">Full list on <a href="https://scholar.google.com/citations?user=S9GWpIwAAAAJ&hl=en">Google Scholar</a>. Undergraduate papers appear under the name Sayed Reza Sajadi.</p>
 </section>
