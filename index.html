@@ -59,6 +59,17 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 @media (max-width:600px){
   header h1{font-size:32px} nav ul{gap:14px} nav ul li.hide{display:none}
 }
+
+.hero{display:flex;gap:32px;align-items:center}
+.hero .txt{flex:1;min-width:0}
+.avatar{width:148px;height:148px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line);flex:none}
+.pub.fig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0;margin:0 0 18px;overflow:hidden}
+.pub.fig .figwrap{background:#fff;border-bottom:1px solid var(--line);padding:16px}
+.pub.fig img{display:block;width:100%;height:auto;margin:0 auto}
+.pub.fig img.tall{max-width:560px}
+.pub.fig .body{padding:14px 18px 16px}
+.pub .sum{font-size:14px;color:var(--muted);margin-top:6px}
+@media (max-width:600px){.hero{flex-direction:column-reverse;align-items:flex-start;gap:20px}.avatar{width:112px;height:112px}}
 </style>
 </head>
 <body>
@@ -68,7 +79,8 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 </div></nav>
 
 <main class="wrap">
-<header>
+<header class="hero">
+  <div class="txt">
   <h1>Reza Sajjadinasab</h1>
   <p class="role">PhD Candidate, Computer Engineering &middot; Boston University</p>
   <p class="lead">I build AI that learns efficiently when every attempt is costly, and I study how far we can trust what it has learned. My work spans reinforcement learning for autonomous driving and machine learning for compilers.</p>
@@ -78,6 +90,8 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
     <a class="btn" href="https://github.com/RS9977"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
     <a class="btn" href="https://linkedin.com/in/reza-sajjadinasab"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5z"/></svg>LinkedIn</a>
   </div>
+  </div>
+  <img class="avatar" src="img/photo.jpg" alt="Photo of Reza Sajjadinasab" onerror="this.remove()">
 </header>
 
 <section id="about">
@@ -106,15 +120,23 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
   <h2>Publications</h2>
 
   <h3 class="sub">Under review</h3>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img class="tall" src="img/greg.png" alt="Greg results: RL fine-tuning raises Bench2Drive driving score for three imitation-learned policies, and Greg leads on HUGSIM zero-shot transfer and adversarial Agility routes" loading="lazy"></div>
+    <div class="body">
     <div class="t">Greg: A Guided Recipe for Efficient Reinforcement Fine-Tuning in Sensorimotor Driving</div>
     <div class="a"><b>R. Sajjadinasab</b>, E. Ohn-Bar</div>
     <div class="v"><span class="tag rev">Under review</span>2026</div>
+    <div class="sum">Reinforcement fine-tuning improves every imitation-learned driving policy we tried, and the best one transfers to an unseen simulator and handles adversarial routes without collisions.</div>
+    </div>
   </div>
-  <div class="pub">
+  <div class="pub fig">
+    <div class="figwrap"><img src="img/flagwise.png" alt="Flagwise overview: a frozen encoder embeds the program, a cost model predicts metrics for flag settings, per-flag signs give the first build and guided search fills later builds" loading="lazy"></div>
+    <div class="body">
     <div class="t">Learned Compiler Flag Selection That Beats the Default from the First Build</div>
     <div class="a"><b>R. Sajjadinasab</b>, S. Arora, M. Herbordt</div>
     <div class="v"><span class="tag rev">Under review</span>2026</div>
+    <div class="sum">A learned model picks compiler settings for each program; its very first build is already smaller than the compiler's standard size setting, and a guided search improves it from there.</div>
+    </div>
   </div>
   <div class="pub">
     <div class="t">Towards Agility in Safety-Critical Driving</div>
